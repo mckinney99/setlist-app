@@ -1,14 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @setlist.title %>
-</p>
-
-<p>
-  <strong>Songs:</strong>
-  <%= @setlist.songs_id %>
-</p>
+<%= turbo_frame_tag dom_id(@setlist) do %>
+  <%= render @setlist %>
+<% end %>
 
 <%= link_to 'Edit', edit_setlist_path(@setlist) %> |
 <%= link_to 'Back', setlists_path %>

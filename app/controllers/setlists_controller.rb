@@ -3,7 +3,8 @@ class SetlistsController < ApplicationController
 
   # GET /setlists or /setlists.json
   def index
-    @setlists = Setlist.all
+    @setlists = Setlist.all.order(created_at: :desc)
+    @setlist = Setlist.new
   end
 
   # GET /setlists/1 or /setlists/1.json
@@ -25,11 +26,11 @@ class SetlistsController < ApplicationController
 
     respond_to do |format|
       if @setlist.save
-        format.html { redirect_to @setlist, notice: "Setlist was successfully created." }
-        format.json { render :show, status: :created, location: @setlist }
+        format.html { redirect_to setlists_path, notice: "Setlist was successfully created." }
+        format.json { render :show, status: :created, location: setlists_path }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @setlist.errors, status: :unprocessable_entity }
+        format.html { render :index }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@setlist, partial: 'posts/form', locals: { setlist: @setlist }) } ## New for this article
       end
     end
   end

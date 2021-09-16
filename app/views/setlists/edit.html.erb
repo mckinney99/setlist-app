@@ -1,6 +1,8 @@
 <h1>Editing Setlist</h1>
 
-<%= render 'form', setlist: @setlist %>
-
-<%= link_to 'Show', @setlist %> |
-<%= link_to 'Back', setlists_path %>
+<%= turbo_frame_tag dom_id(@setlist) do %>
+  <div class="setlists">
+    <%= render 'form', setlist: @setlist %>
+    <%= link_to "Cancel", @setlist %>
+  </div>
+<% end %>
