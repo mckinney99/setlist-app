@@ -28,8 +28,8 @@ class SongsController < ApplicationController
         format.html { redirect_to @song, notice: "Song was successfully created." }
         format.json { render :show, status: :created, location: @song }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @song.errors, status: :unprocessable_entity }
+        format.html { render :index }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@song, partial: 'posts/form', locals: { song: @song }) }
       end
     end
   end

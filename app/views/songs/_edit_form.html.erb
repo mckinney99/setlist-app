@@ -2,6 +2,7 @@
   <% if song.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(song.errors.count, "error") %> prohibited this song from being saved:</h2>
+
       <ul>
         <% song.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,21 +11,21 @@
     </div>
   <% end %>
 
-  <div class="text-gray-700 text-sm font-bold">
+  <div class="field block text-gray-700 text-sm font-bold mb-2">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <div class="field">
         <%= form.label :title %>
         <%= form.text_field :title, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
-      </div>
+    </div>
 
-      <div class="field">
-        <%= form.label :url %>
-        <%= form.text_field :url, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
-      </div>
-      </br>
-      <div class="actions">
-        <%= form.submit class: 'py-4 px-6  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full' %>
-      </div>
+    <div class="field">
+      <%= form.label :songs_id %>
+      <%= form.text_field :songs_id, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+    </div>
+    <br/>
+    <div class="actions">
+      <%= form.submit class: 'py-4 px-6  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full' %>
+    </div>
     </div>
   </div>
 <% end %>

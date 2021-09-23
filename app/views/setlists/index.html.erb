@@ -1,17 +1,46 @@
 <%= turbo_stream_from "setlists" %>
 
-<%= turbo_frame_tag "setlists_form" do %>
-  <%= render "setlists/form", setlist: @setlist %>
-<% end %>
+<div class="flex">
+  <div class="flex-1">
+    <%= turbo_frame_tag "setlists_form" do %>
+      <%= render "setlists/form", setlist: @setlist %>
+    <% end %>
+  </div>
 
-<table class="table p-4 bg-white shadow rounded-lg">
-  <thead>
-    <tr>
-      <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
-        <%= turbo_frame_tag "setlists" do %>
-          <%= render @setlists %>
-        <% end %>
-      </th>
-    </tr>
-  </thead>
-</table>
+  <div class="flex-1">
+    <%= turbo_frame_tag "songs_form" do %>
+      <%= render "songs/form", song: @song %>
+    <% end %> 
+  </div>
+</div>
+
+<div class="flex">
+  <div class="flex-1">
+    <table class="table p-4 bg-white shadow rounded-lg">
+      <thead>
+        <tr>
+          <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+            <%= turbo_frame_tag "setlists" do %>
+              <%= render @setlists %>
+            <% end %>
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+
+
+  <div class="flex-1">
+    <table class="table p-4 bg-white shadow rounded-lg">
+      <thead>
+        <tr>
+          <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+            <%= turbo_frame_tag "songs" do %>
+              <%= render @songs %>
+            <% end %>
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>

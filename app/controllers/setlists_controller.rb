@@ -5,6 +5,8 @@ class SetlistsController < ApplicationController
   def index
     @setlists = Setlist.all.order(created_at: :desc)
     @setlist = Setlist.new
+    @song = Song.new
+    @songs = Song.all.order(created_at: :desc)
   end
 
   # GET /setlists/1 or /setlists/1.json
@@ -18,6 +20,7 @@ class SetlistsController < ApplicationController
 
   # GET /setlists/1/edit
   def edit
+    @songs = Song.all.order(created_at: :desc)
   end
 
   # POST /setlists or /setlists.json
@@ -30,7 +33,7 @@ class SetlistsController < ApplicationController
         format.json { render :show, status: :created, location: setlists_path }
       else
         format.html { render :index }
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@setlist, partial: 'posts/form', locals: { setlist: @setlist }) } ## New for this article
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@setlist, partial: 'posts/form', locals: { setlist: @setlist }) }
       end
     end
   end

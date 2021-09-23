@@ -1,6 +1,17 @@
 <h1>Editing Song</h1>
 
-<%= render 'form', song: @song %>
+<%
+=begin%>
+ <%= render 'form', song: @song %>
 
 <%= link_to 'Show', @song %> |
-<%= link_to 'Back', songs_path %>
+<%= link_to 'Back', songs_path %> 
+<%
+=end%>
+
+<%= turbo_frame_tag dom_id(@song) do %>
+  <div class="songs">
+    <%= render 'edit_form', song: @song %>
+    <%= link_to "Cancel", @song %>
+  </div>
+<% end %>

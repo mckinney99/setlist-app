@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="text-gray-700 text-sm font-bold">
+  <div class="field block text-gray-700 text-sm font-bold mb-2">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <div class="field">
         <%= form.label :title %>
@@ -20,14 +20,7 @@
 
     <div class="field">
       <%= form.label :songs_id %>
-      <div class="flex">
-        <div class="flex-1">
-          <%= form.select @setlist.id, @songs.collect { |song| [song.title, song.id] }, {}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }%>
-        </div>
-        <div class="actions flex-2 pl-6 ">
-          <%= form.submit "Add Song", class: 'py-2 px-8 mr-6 bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full' %>
-        </div>
-      </div>
+      <%= form.select @setlist.id, @songs.collect { |song| [song.title, song.id] }, {}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" }%>
     </div>
     <br/>
     <div class="actions">

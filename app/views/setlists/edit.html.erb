@@ -2,7 +2,7 @@
 
 <%= turbo_frame_tag dom_id(@setlist) do %>
   <div class="setlists">
-    <%= render 'form', setlist: @setlist %>
+    <%= render 'edit_form', setlist: @setlist %>
     <%= link_to "Cancel", @setlist %>
   </div>
 <% end %>
