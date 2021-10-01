@@ -1,0 +1,15 @@
+<div class="flex">
+  <div class="flex-1">
+    <table class="table p-4 bg-white shadow rounded-lg">
+      <thead>
+        <tr>
+          <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+            <%= turbo_frame_tag "songs" do %>
+              <%= render @songs %>
+            <% end %>
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>

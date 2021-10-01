@@ -1,0 +1,11 @@
+<div id="<%= dom_id(@songs)%>">
+  <%= @songs %>
+  </div>
+
+<%
+=begin%>
+ <%= turbo_frame_tag "setlists_songs" do %>
+  <%= @setlist_songs %>
+<%end%> 
+<%
+=end%>

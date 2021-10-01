@@ -6,7 +6,7 @@ class SetlistsController < ApplicationController
     @setlists = Setlist.all.order(created_at: :desc)
     @setlist = Setlist.new
     @song = Song.new
-    @songs = Song.all.order(created_at: :desc)
+    @songs = Song.all
   end
 
   # GET /setlists/1 or /setlists/1.json
@@ -23,23 +23,36 @@ class SetlistsController < ApplicationController
     @songs = Song.all.order(created_at: :desc)
   end
 
+  def add_songs
+    format.turbo_stream { render turbo_stream: turbo_stream.replace(@setlist_songs, partial: 'posts/form', locals: { setlist_songs: @setlist_songs }) }
+  end
+
+
   # POST /setlists or /setlists.json
   def create
     @setlist = Setlist.new(setlist_params)
-
     respond_to do |format|
-      if @setlist.save
+      if params[:create_song] && @setlist.save
+        format.html { redirect_to setlists_path, notice: "Setlist was successfully created." }
+        format.json { render :show, status: :created, location: setlists_path }
+      elsif params[:create_song]
+        Setlist.find(@setlist.id).update(:songs_id => params[:songs_id])
+        format.html { render :index }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@song, partial: 'posts/songs', locals: { song: @song }) }
+      elsif @setlist.save
         format.html { redirect_to setlists_path, notice: "Setlist was successfully created." }
         format.json { render :show, status: :created, location: setlists_path }
       else
         format.html { render :index }
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@setlist, partial: 'posts/form', locals: { setlist: @setlist }) }
+        # I think we want to replace the song turbo_stream here as well - This should stop displaying the song index before a setlist is made
       end
     end
   end
 
   # PATCH/PUT /setlists/1 or /setlists/1.json
   def update
+    binding.pry
     respond_to do |format|
       if @setlist.update(setlist_params)
         format.html { redirect_to @setlist, notice: "Setlist was successfully updated." }
